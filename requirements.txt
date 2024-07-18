@@ -1,0 +1,28 @@
+Requerimientos:
+- La app debe tener 3 pestañas
+- La app debe tener la API de ThemDB
+- La app debe tener cambio de tema claro y oscuro.
+
+Paleta de colores:
+_ BlueAccent: #004cd9
+_ BlueLight: #0066ff
+_ White: #fcfcfc
+_ Background: #000000
+_ Stars: #e2ce18
+_ Gray: #979797
+
+Requerimientos para la pagina home:
+- La app debe tener un buscador componente
+- La app debe tener un carrousel por categorias.
+- La app debe tener informacion por cada pelicula(Poster, titulo, categoria, duracion,descripcion, actores)
+
+Requerimientos para la pagina buscar:
+- La pagina buscar debe tener el componente de busqueda de las peliculas.
+- La pagina buscar debe mostrar las peliculas que el usuario aya puesto.
+- La pagina buscar debe llevarte a la informacion de la pelicula.
+
+Requerimientos para la pagina de profile:
+- La pagina profile debe mostrar las siguientes caracteristicas:
+ - Cambio de tema.
+ - Cambio de idioma.
+
