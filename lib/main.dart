@@ -1,5 +1,6 @@
 import 'package:app_movie_tbm/pages/home_page/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() => runApp(const MyApp());
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'App Movie',
       theme: ThemeData(
         colorSchemeSeed: const Color(0xff004cd9),
+        fontFamily: GoogleFonts.poppins().fontFamily,
       ),
       home: const HomePage(),
     );
