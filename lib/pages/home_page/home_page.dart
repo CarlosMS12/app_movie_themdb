@@ -53,12 +53,13 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
                 const SizedBox(height: 20),
+                // Carousel
                 CarouselSlider.builder(
                   itemCount: 10,
                   options: CarouselOptions(
                     aspectRatio: 16 / 9,
                     height: 300,
-                    autoPlay: true,
+                    autoPlay: false,
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     viewportFraction: 0.55,
@@ -72,7 +73,12 @@ class _HomePageState extends State<HomePage> {
                         height: 300,
                         width: 200,
                         color: Colors.green[100],
-                        child: Center(child: Text('$index')),
+                        child: const Center(
+                            child: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              "https://github.com/CarlosMS12/React-App-Movies/blob/main/src/assets/image/avatar.png?raw=true"),
+                          radius: 70,
+                        )),
                       ),
                     );
                   },
