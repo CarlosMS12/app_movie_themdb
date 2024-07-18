@@ -15,10 +15,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late Future<List<Movie>> _nowPlayingMovies;
+  late Future<List<Movie>> _popularMovies;
   late Future<List<Movie>> _trendingMovies;
 
   @override
   void initState() {
+    _nowPlayingMovies = Api().getNowPlayingMovies();
+    _popularMovies = Api().getPopularMovies();
     _trendingMovies = Api().getTrendingMovies();
     super.initState();
   }
@@ -71,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 20),
                   // Carousel
                   FutureBuilder(
-                    future: _trendingMovies,
+                    future: _nowPlayingMovies,
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return Center(
@@ -92,16 +96,30 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'Trending',
                     style: GoogleFonts.poppins(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600),
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   const SizedBox(height: 20),
                   // Trending
-                  const MyCarouselSlider(
-                    itemCount: 10,
-                    width: 150,
-                    title: 'Trending',
+                  FutureBuilder(
+                    future: _trendingMovies,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text(snapshot.error.toString()),
+                        );
+                      } else if (snapshot.hasData) {
+                        return MyCarouselSlider(
+                          snapshot: snapshot,
+                          itemCount: 10,
+                          width: 150,
+                        );
+                      } else {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                    },
                   ),
                   const SizedBox(height: 20),
                   Text(
@@ -114,10 +132,21 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 20),
 
                   // Popular
-                  const MyCarouselSlider(
-                    itemCount: 10,
-                    width: 150,
-                    title: 'Popular',
+                  FutureBuilder(
+                    future: _popularMovies,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(child: Text(snapshot.error.toString()));
+                      } else if (snapshot.hasData) {
+                        return MyCarouselSlider(
+                          snapshot: snapshot,
+                          itemCount: 10,
+                          width: 150,
+                        );
+                      } else {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                    },
                   ),
                 ],
               ),

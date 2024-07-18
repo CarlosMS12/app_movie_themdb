@@ -1,9 +1,9 @@
+import 'package:app_movie_tbm/api/api.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyCarouselSlider extends StatelessWidget {
-  final String title;
   final int itemCount;
   final double? aspectRatio;
   final double? height;
@@ -11,6 +11,7 @@ class MyCarouselSlider extends StatelessWidget {
   final bool? autoPlay;
   final bool? enlargeCenterPage;
   final String? image;
+  final AsyncSnapshot snapshot;
   const MyCarouselSlider({
     super.key,
     required this.itemCount,
@@ -20,7 +21,7 @@ class MyCarouselSlider extends StatelessWidget {
     this.autoPlay,
     this.enlargeCenterPage,
     this.image,
-    required this.title,
+    required this.snapshot,
   });
 
   @override
@@ -44,10 +45,12 @@ class MyCarouselSlider extends StatelessWidget {
               child: Container(
                 width: 150,
                 height: 200,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   image: DecorationImage(
+                    filterQuality: FilterQuality.high,
                     fit: BoxFit.cover,
-                    image: AssetImage('assets/image/kasu.jpg'),
+                    image: NetworkImage(
+                        '${Constans.imagePath}${snapshot.data[index].posterPath}'),
                   ),
                 ),
               ),
@@ -56,7 +59,7 @@ class MyCarouselSlider extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Text(
-                title,
+                '${snapshot.data[index].title}',
                 style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontSize: 12,
