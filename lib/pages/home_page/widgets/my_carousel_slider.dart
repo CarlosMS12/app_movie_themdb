@@ -60,9 +60,11 @@ class MyCarouselSlider extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Text(
                 '${snapshot.data[index].title}',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 12,
+                  fontSize: 14,
                 ),
               ),
             ),
